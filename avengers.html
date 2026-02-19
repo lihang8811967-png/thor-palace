@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0, user-scalable=no">
+    <title>⚡ AVENGERS COMMAND CENTER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
+            color: #00d4ff;
+            width: 1024px;
+            height: 768px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 星空背景 */
+        .starfield {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(2px 2px at 20% 30%, white, transparent),
+                        radial-gradient(2px 2px at 60% 70%, white, transparent),
+                        radial-gradient(1px 1px at 50% 50%, white, transparent),
+                        radial-gradient(1px 1px at 80% 10%, white, transparent),
+                        radial-gradient(2px 2px at 90% 60%, white, transparent);
+            background-size: 200% 200%;
+            animation: stars 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes stars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-50px, -50px); }
+        }
+
+        /* 主容器 */
+        .command-center {
+            position: relative;
+            width: 1024px;
+            height: 768px;
+            padding: 20px;
+            display: grid;
+            grid-template-rows: 80px 1fr 80px;
+            gap: 15px;
+        }
+
+        /* 顶部状态栏 */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 20, 40, 0.9);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 0 30px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .title {
+            font-size: 2.2em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00d4ff, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .system-stats {
+            display: flex;
+            gap: 30px;
+            font-size: 1.1em;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        /* 中央区域 */
+        .main-area {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 15px;
+        }
+
+        /* 左侧面板 - Thor */
+        .left-panel {
+            background: rgba(0, 20, 40, 0.8);
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .commander {
+            text-align: center;
+        }
+
+        .commander-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
+            animation: thunderGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes thunderGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+            50% { box-shadow: 0 0 50px rgba(251, 191, 36, 1), 0 0 70px rgba(251, 191, 36, 0.5); }
+        }
+
+        .commander-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .commander-title {
+            font-size: 0.9em;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .mission-count {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid #fbbf24;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* 中央核心 - JARVIS */
+        .core-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .arc-reactor {
+            background: rgba(0, 20, 40, 0.8);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 20px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reactor-core {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: reactorPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 50px #00d4ff, 0 0 100px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes reactorPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .reactor-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* 复仇者成员网格 */
+        .avengers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            flex: 1;
+        }
+
+        .avenger {
+            background: rgba(0, 20, 40, 0.8);
+            border: 2px solid #475569;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .avenger.working {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .avenger.idle {
+            border-color: #475569;
+        }
+
+        .avenger.pending {
+            border-color: #fbbf24;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        }
+
+        .avenger-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+        }
+
+        .avenger-name {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .avenger-model {
+            font-size: 0.75em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .avenger-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-working {
+            background: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+
+        .status-idle {
+            background: rgba(71, 85, 105, 0.3);
+            color: #94a3b8;
+            border: 1px solid #475569;
+        }
+
+        .status-pending {
+            background: rgba(251, 191, 36, 0.3);
+            color: #fbbf24;
+            border: 1px solid #fbbf24;
+            animation: statusBlink 1s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 右侧面板 - 任务日志 */
+        .right-panel {
+            background: rgba(0, 20, 40, 0.8);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .panel-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00d4ff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .mission-log {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .mission-log::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .mission-log::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 5px;
+        }
+
+        .log-entry {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 3px solid #00d4ff;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            font-size: 0.75em;
+            border-radius: 3px;
+        }
+
+        .log-time {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        /* 底部操作栏 */
+        .bottom-bar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* 实时时钟 */
+        .clock {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            color: #fbbf24;
+            text-shadow: 0 0 10px #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield"></div>
+    
+    <div class="command-center">
+        <!-- 顶部状态栏 -->
+        <div class="top-bar">
+            <div class="title">⚡ AVENGERS COMMAND CENTER</div>
+            <div class="system-stats">
+                <div class="stat">
+                    <div class="stat-value" id="activeAgents">5</div>
+                    <div>ACTIVE</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="pendingTasks">3</div>
+                    <div>PENDING</div>
+                </div>
+                <div class="clock" id="clock">00:00:00</div>
+            </div>
+        </div>
+
+        <!-- 中央区域 -->
+        <div class="main-area">
+            <!-- 左侧 - Thor -->
+            <div class="left-panel">
+                <div class="commander">
+                    <div class="commander-avatar">⚡</div>
+                    <div class="commander-name">THOR</div>
+                    <div class="commander-title">Supreme Commander</div>
+                    <div style="font-size: 0.85em; color: #94a3b8;">陈公子 Dexter</div>
+                    <div class="mission-count">
+                        <div style="font-size: 0.9em; color: #94a3b8;">Today's Missions</div>
+                        <div style="font-size: 2em; color: #fbbf24; font-weight: bold;">12</div>
+                    </div>
+                    <div class="mission-count" style="margin-top: 10px;">
+                        <div style="font-size: 0.9em; color: #94a3b8;">System Status</div>
+                        <div style="font-size: 1.2em; color: #10b981; font-weight: bold;">● ONLINE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中央 - JARVIS + Avengers -->
+            <div class="core-panel">
+                <!-- Arc Reactor -->
+                <div class="arc-reactor">
+                    <div class="reactor-core">
+                        <div class="reactor-text">
+                            JARVIS<br>
+                            <span style="font-size: 0.6em;">CORE SYSTEMS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avengers Grid -->
+                <div class="avengers-grid">
+                    <div class="avenger working">
+                        <div class="avenger-icon">🤖</div>
+                        <div class="avenger-name">JARVIS</div>
+                        <div class="avenger-model">Sonnet-4.5</div>
+                        <div class="avenger-status status-working">Working</div>
+                    </div>
+
+                    <div class="avenger working">
+                        <div class="avenger-icon">💚</div>
+                        <div class="avenger-name">HULK</div>
+                        <div class="avenger-model">Grok-3</div>
+                        <div class="avenger-status status-working">Searching</div>
+                    </div>
+
+                    <div class="avenger idle">
+                        <div class="avenger-icon">🛡️</div>
+                        <div class="avenger-name">CAPTAIN</div>
+                        <div class="avenger-model">Gemini-3-Pro</div>
+                        <div class="avenger-status status-idle">Idle</div>
+                    </div>
+
+                    <div class="avenger pending">
+                        <div class="avenger-icon">🎯</div>
+                        <div class="avenger-name">HAWKEYE</div>
+                        <div class="avenger-model">GPT-4o</div>
+                        <div class="avenger-status status-pending">Pending</div>
+                    </div>
+
+                    <div class="avenger working">
+                        <div class="avenger-icon">🕷️</div>
+                        <div class="avenger-name">BLACK WIDOW</div>
+                        <div class="avenger-model">Claude-Opus</div>
+                        <div class="avenger-status status-working">Analyzing</div>
+                    </div>
+
+                    <div class="avenger idle">
+                        <div class="avenger-icon">🦾</div>
+                        <div class="avenger-name">VISION</div>
+                        <div class="avenger-model">Image-Vision</div>
+                        <div class="avenger-status status-idle">Standby</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧 - Mission Log -->
+            <div class="right-panel">
+                <div class="panel-title">📡 MISSION LOG</div>
+                <div class="mission-log" id="missionLog">
+                    <div class="log-entry">
+                        <div class="log-time">14:28:45</div>
+                        <div>JARVIS: API integration completed</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">14:15:22</div>
+                        <div>HULK: Web search in progress</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">13:45:10</div>
+                        <div>CAPTAIN: Calendar sync completed</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">12:30:05</div>
+                        <div>BLACK WIDOW: Email monitoring active</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">11:20:33</div>
+                        <div>JARVIS: GitHub status updated</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">10:15:18</div>
+                        <div>HAWKEYE: Translation request pending</div>
+                    </div>
+                    <div class="log-entry">
+                        <div class="log-time">09:00:00</div>
+                        <div>System boot complete</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作栏 -->
+        <div class="bottom-bar">
+            <div class="action-btn">
+                <span class="action-icon">📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="action-btn">
+                <span class="action-icon">👥</span>
+                <span>Customers</span>
+            </div>
+            <div class="action-btn">
+                <span class="action-icon">📋</span>
+                <span>Projects</span>
+            </div>
+            <div class="action-btn">
+                <span class="action-icon">📈</span>
+                <span>Analytics</span>
+            </div>
+            <div class="action-btn">
+                <span class="action-icon">⚙️</span>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 实时时钟
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            document.getElementById('clock').textContent = timeStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 模拟任务日志更新
+        function addLogEntry(message) {
+            const log = document.getElementById('missionLog');
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `
+                <div class="log-time">${timeStr}</div>
+                <div>${message}</div>
+            `;
+            
+            log.insertBefore(entry, log.firstChild);
+            
+            // 保持最多10条
+            while (log.children.length > 10) {
+                log.removeChild(log.lastChild);
+            }
+        }
+
+        // 模拟状态更新
+        setInterval(() => {
+            const messages = [
+                'JARVIS: Monitoring system health',
+                'HULK: Data processing complete',
+                'CAPTAIN: Task queue updated',
+                'BLACK WIDOW: Security scan passed',
+                'HAWKEYE: Target acquired',
+                'VISION: Image analysis ready'
+            ];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            addLogEntry(randomMsg);
+        }, 15000);
+
+        // 模拟 Avenger 状态切换
+        setInterval(() => {
+            const avengers = document.querySelectorAll('.avenger');
+            const randomAvenger = avengers[Math.floor(Math.random() * avengers.length)];
+            
+            // 随机切换状态
+            const statuses = ['working', 'idle', 'pending'];
+            const currentStatus = randomAvenger.className.split(' ')[1];
+            const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            
+            if (currentStatus !== newStatus) {
+                randomAvenger.className = `avenger ${newStatus}`;
+                
+                const statusEl = randomAvenger.querySelector('.avenger-status');
+                statusEl.className = `avenger-status status-${newStatus}`;
+                statusEl.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+            }
+        }, 8000);
+    </script>
+</body>
+</html>

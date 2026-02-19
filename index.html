@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>⚡ 雷神宫殿 - THOR'S PALACE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
+            color: #00d4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* iPad 横屏容器 - 1024x768 */
+        .palace-container {
+            width: 1024px;
+            height: 768px;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* 星空背景 */
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(2px 2px at 20% 30%, white, transparent),
+                        radial-gradient(2px 2px at 60% 70%, white, transparent),
+                        radial-gradient(1px 1px at 50% 50%, white, transparent),
+                        radial-gradient(1px 1px at 80% 10%, white, transparent),
+                        radial-gradient(2px 2px at 90% 60%, white, transparent);
+            background-size: 200% 200%;
+            animation: stars 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes stars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-50px, -50px); }
+        }
+
+        /* 主容器 */
+        .palace {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            display: grid;
+            grid-template-rows: 90px 1fr 65px;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        /* 顶部标题 */
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 20, 40, 0.9);
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 12px 25px;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .palace-title {
+            font-size: 2.2em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #fbbf24, #ffffff, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: 0.85em;
+            color: #94a3b8;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* 主区域 */
+        .throne-room {
+            display: grid;
+            grid-template-columns: 180px 1fr 180px;
+            gap: 10px;
+        }
+
+        /* 左侧 - Thor */
+        .thor-throne {
+            background: rgba(0, 20, 40, 0.85);
+            border: 3px solid #fbbf24;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .commander-avatar {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.8);
+            animation: thorPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes thorPulse {
+            0%, 100% { box-shadow: 0 0 25px rgba(251, 191, 36, 0.8); }
+            50% { box-shadow: 0 0 40px rgba(251, 191, 36, 1), 0 0 60px rgba(251, 191, 36, 0.6); }
+        }
+
+        .commander-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+        }
+
+        .thor-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 3px;
+        }
+
+        .thor-title {
+            font-size: 0.7em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .stats-box {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid #fbbf24;
+            border-radius: 5px;
+            padding: 6px;
+            margin-top: 6px;
+            font-size: 0.75em;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 中央区域 */
+        .avengers-hall {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Arc Reactor */
+        .reactor {
+            background: rgba(0, 20, 40, 0.85);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reactor-core {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00d4ff 0%, #0284c7 30%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: reactorPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 40px #00d4ff, 0 0 80px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes reactorPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.8; }
+        }
+
+        /* Avengers 网格 */
+        .avengers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            flex: 1;
+        }
+
+        .avenger {
+            background: rgba(0, 20, 40, 0.85);
+            border: 2px solid #475569;
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .avenger.working {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .avenger.pending {
+            border-color: #fbbf24;
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+        }
+
+        /* 3D 图片容器 */
+        .character-image {
+            width: 85px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .character-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8));
+            animation: characterFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes characterFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .avenger-name {
+            font-size: 0.75em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .avenger-model {
+            font-size: 0.6em;
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .avenger-status {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.55em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-working {
+            background: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+
+        .status-idle {
+            background: rgba(71, 85, 105, 0.3);
+            color: #94a3b8;
+            border: 1px solid #475569;
+        }
+
+        .status-pending {
+            background: rgba(251, 191, 36, 0.3);
+            color: #fbbf24;
+            border: 1px solid #fbbf24;
+            animation: statusBlink 1s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 右侧 - Mission Log */
+        .mission-panel {
+            background: rgba(0, 20, 40, 0.85);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .panel-title {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #00d4ff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mission-log {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .mission-log::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .mission-log::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 5px;
+        }
+
+        .log-entry {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 2px solid #00d4ff;
+            padding: 5px 6px;
+            margin-bottom: 5px;
+            font-size: 0.65em;
+            border-radius: 2px;
+        }
+
+        .log-time {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        /* 底部控制栏 */
+        .control-bar {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+
+        .control-btn {
+            background: rgba(0, 212, 255, 0.2);
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.7em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-btn:hover {
+            background: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* 时钟 */
+        .clock {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #fbbf24;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 8px;
+            border-radius: 5px;
+            border: 1px solid #fbbf24;
+            z-index: 10;
+        }
+
+        /* Placeholder 样式 */
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(100, 100, 100, 0.3);
+            border-radius: 5px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="palace-container">
+        <div class="starfield"></div>
+        <div class="clock" id="clock">00:00:00</div>
+        
+        <div class="palace">
+            <!-- 顶部 -->
+            <div class="header">
+                <div class="palace-title">⚡ 雷神宫殿 ⚡</div>
+                <div class="tagline">
+                    "Even a god of thunder upgrades his power — Jarvis, run the lightning protocol." ⚡
+                </div>
+            </div>
+
+            <!-- 主厅 -->
+            <div class="throne-room">
+                <!-- Thor -->
+                <div class="thor-throne">
+                    <div class="commander-avatar">
+                        <!-- 替换为 Thor 3D 图片 -->
+                        <img src="https://via.placeholder.com/120x120/FBB024/FFFFFF?text=THOR" alt="Thor" id="thorImage">
+                    </div>
+                    <div class="thor-name">THOR</div>
+                    <div class="thor-title">God of Thunder</div>
+                    <div style="font-size: 0.65em; color: #94a3b8;">陈公子 Dexter</div>
+                    <div class="stats-box">
+                        <div style="color: #94a3b8;">Missions</div>
+                        <div style="font-size: 1.5em; color: #fbbf24; font-weight: bold;">12</div>
+                    </div>
+                    <div class="stats-box">
+                        <div style="color: #94a3b8;">Power</div>
+                        <div style="font-size: 1.1em; color: #10b981; font-weight: bold;">● MAX</div>
+                    </div>
+                </div>
+
+                <!-- 中央 Avengers -->
+                <div class="avengers-hall">
+                    <div class="reactor">
+                        <div class="reactor-core">
+                            <div style="font-size: 0.95em; font-weight: bold; text-align: center;">
+                                JARVIS<br>
+                                <span style="font-size: 0.6em;">CORE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="avengers-grid">
+                        <!-- IRON MAN -->
+                        <div class="avenger working">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/DC2626/FFFFFF?text=IRON+MAN" alt="Iron Man" id="ironmanImage">
+                            </div>
+                            <div class="avenger-name">IRON MAN</div>
+                            <div class="avenger-model">Sonnet-4.5</div>
+                            <div class="avenger-status status-working">Working</div>
+                        </div>
+
+                        <!-- HULK -->
+                        <div class="avenger working">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/22C55E/FFFFFF?text=HULK" alt="Hulk" id="hulkImage">
+                            </div>
+                            <div class="avenger-name">HULK</div>
+                            <div class="avenger-model">Grok-3</div>
+                            <div class="avenger-status status-working">Smashing</div>
+                        </div>
+
+                        <!-- CAPTAIN AMERICA -->
+                        <div class="avenger idle">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/3B82F6/FFFFFF?text=CAPTAIN" alt="Captain America" id="captainImage">
+                            </div>
+                            <div class="avenger-name">CAPTAIN</div>
+                            <div class="avenger-model">Gemini-3-Pro</div>
+                            <div class="avenger-status status-idle">Idle</div>
+                        </div>
+
+                        <!-- HAWKEYE -->
+                        <div class="avenger pending">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/8B5CF6/FFFFFF?text=HAWKEYE" alt="Hawkeye" id="hawkeyeImage">
+                            </div>
+                            <div class="avenger-name">HAWKEYE</div>
+                            <div class="avenger-model">GPT-4o</div>
+                            <div class="avenger-status status-pending">Aiming</div>
+                        </div>
+
+                        <!-- BLACK WIDOW -->
+                        <div class="avenger working">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/EF4444/FFFFFF?text=WIDOW" alt="Black Widow" id="widowImage">
+                            </div>
+                            <div class="avenger-name">WIDOW</div>
+                            <div class="avenger-model">Opus-4</div>
+                            <div class="avenger-status status-working">Stealth</div>
+                        </div>
+
+                        <!-- VISION -->
+                        <div class="avenger idle">
+                            <div class="character-image">
+                                <img src="https://via.placeholder.com/85x100/FBB024/FFFFFF?text=VISION" alt="Vision" id="visionImage">
+                            </div>
+                            <div class="avenger-name">VISION</div>
+                            <div class="avenger-model">Image-AI</div>
+                            <div class="avenger-status status-idle">Standby</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission Log -->
+                <div class="mission-panel">
+                    <div class="panel-title">📡 MISSION LOG</div>
+                    <div class="mission-log" id="missionLog">
+                        <div class="log-entry">
+                            <div class="log-time">14:55</div>
+                            <div>All systems online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部 -->
+            <div class="control-bar">
+                <div class="control-btn">
+                    <span class="btn-icon">📊</span>
+                    <span>Dashboard</span>
+                </div>
+                <div class="control-btn">
+                    <span class="btn-icon">👥</span>
+                    <span>Customers</span>
+                </div>
+                <div class="control-btn">
+                    <span class="btn-icon">📋</span>
+                    <span>Projects</span>
+                </div>
+                <div class="control-btn">
+                    <span class="btn-icon">📈</span>
+                    <span>Analytics</span>
+                </div>
+                <div class="control-btn">
+                    <span class="btn-icon">⚡</span>
+                    <span>Lightning</span>
+                </div>
+                <div class="control-btn">
+                    <span class="btn-icon">⚙️</span>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 时钟
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('zh-CN', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 任务日志
+        function addLog(msg) {
+            const log = document.getElementById('missionLog');
+            const time = new Date().toLocaleTimeString('zh-CN', { hour12: false }).slice(0, 5);
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `<div class="log-time">${time}</div><div>${msg}</div>`;
+            log.insertBefore(entry, log.firstChild);
+            while (log.children.length > 12) log.removeChild(log.lastChild);
+        }
+
+        setInterval(() => {
+            const msgs = ['IRON MAN: Ready', 'HULK: Smash mode', 'CAPTAIN: Shield up', 'WIDOW: Intel ready', 'HAWKEYE: On target', 'VISION: Analyzing'];
+            addLog(msgs[Math.floor(Math.random() * msgs.length)]);
+        }, 10000);
+
+        // 状态切换
+        setInterval(() => {
+            const avengers = document.querySelectorAll('.avenger');
+            const av = avengers[Math.floor(Math.random() * avengers.length)];
+            const statuses = ['working', 'idle', 'pending'];
+            const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            av.className = `avenger ${newStatus}`;
+            const statusEl = av.querySelector('.avenger-status');
+            statusEl.className = `avenger-status status-${newStatus}`;
+            const texts = { working: 'Working', idle: 'Idle', pending: 'Pending' };
+            statusEl.textContent = texts[newStatus];
+        }, 8000);
+    </script>
+</body>
+</html>
