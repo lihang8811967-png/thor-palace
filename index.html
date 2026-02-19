@@ -28,9 +28,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 15% 20%, rgba(138, 43, 226, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(0, 191, 255, 0.25) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 15% 20%, rgba(138, 43, 226, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 191, 255, 0.3) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
                 radial-gradient(ellipse at top, #1a0033 0%, #000 40%, #001a33 100%);
             z-index: 0;
         }
@@ -41,8 +41,8 @@
             width: 200%;
             height: 200%;
             background: 
-                repeating-linear-gradient(0deg, rgba(0, 212, 255, 0.03) 0px, transparent 2px, transparent 4px),
-                repeating-linear-gradient(90deg, rgba(255, 215, 0, 0.03) 0px, transparent 2px, transparent 4px);
+                repeating-linear-gradient(0deg, rgba(0, 212, 255, 0.04) 0px, transparent 2px, transparent 4px),
+                repeating-linear-gradient(90deg, rgba(255, 215, 0, 0.04) 0px, transparent 2px, transparent 4px);
             animation: gridMove 20s linear infinite;
         }
 
@@ -57,14 +57,14 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 30% 40%, rgba(255, 0, 128, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 70% 60%, rgba(0, 255, 128, 0.08) 0%, transparent 35%);
+                radial-gradient(circle at 30% 40%, rgba(255, 0, 128, 0.12) 0%, transparent 30%),
+                radial-gradient(circle at 70% 60%, rgba(0, 255, 128, 0.1) 0%, transparent 35%);
             animation: colorPulse 15s ease-in-out infinite;
         }
 
         @keyframes colorPulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         /* 动态星空 */
@@ -86,18 +86,9 @@
             animation: starTwinkle 3s infinite ease-in-out;
         }
 
-        .star.shooting {
-            animation: shootingStar 2s linear infinite;
-        }
-
         @keyframes starTwinkle {
             0%, 100% { opacity: 0.2; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.5); }
-        }
-
-        @keyframes shootingStar {
-            0% { transform: translateX(0) translateY(0); opacity: 1; }
-            100% { transform: translateX(-200px) translateY(200px); opacity: 0; }
         }
 
         /* 能量波纹 */
@@ -141,10 +132,10 @@
             letter-spacing: 5px;
         }
 
-        /* 雷神指挥官 - 中上 */
+        /* 雷神指挥官 */
         .thor-commander {
             position: absolute;
-            top: 100px;
+            top: 90px;
             left: 50%;
             transform: translateX(-50%);
             width: 380px;
@@ -203,8 +194,7 @@
             text-shadow: 
                 0 0 10px rgba(255, 215, 0, 1),
                 0 0 30px rgba(255, 215, 0, 0.8),
-                0 0 60px rgba(0, 212, 255, 0.6),
-                0 5px 10px rgba(0, 0, 0, 0.5);
+                0 0 60px rgba(0, 212, 255, 0.6);
             letter-spacing: 10px;
             font-family: 'Orbitron', monospace;
         }
@@ -227,45 +217,43 @@
             font-weight: 700;
         }
 
-        /* 右侧面板 */
+        /* 右侧面板 - 调整位置避免重叠 */
         .right-panel {
             position: absolute;
-            top: 80px;
-            right: 20px;
-            width: 260px;
+            top: 70px;
+            right: 15px;
+            width: 240px;
             z-index: 15;
         }
 
         /* JARVIS Core */
         .jarvis-core {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .core-title {
-            font-size: 22px;
+            font-size: 20px;
             color: #00d4ff;
-            margin-bottom: 18px;
-            text-shadow: 0 0 20px #00d4ff, 0 0 40px rgba(0, 212, 255, 0.5);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px #00d4ff;
             letter-spacing: 3px;
             font-weight: 700;
             font-family: 'Orbitron', monospace;
         }
 
         .arc-reactor {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 20px;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
             border-radius: 50%;
             background: 
-                radial-gradient(circle at center, #fff 0%, #00d4ff 20%, #0066ff 40%, transparent 70%),
-                radial-gradient(circle at center, rgba(0, 212, 255, 0.6) 0%, transparent 100%);
+                radial-gradient(circle at center, #fff 0%, #00d4ff 20%, #0066ff 40%, transparent 70%);
             animation: reactorSpin 5s linear infinite, reactorPulse 2s ease-in-out infinite;
             box-shadow: 
-                0 0 50px #00d4ff, 
-                0 0 100px #0066ff,
-                0 0 150px rgba(0, 212, 255, 0.3),
-                inset 0 0 40px rgba(0, 212, 255, 0.6);
+                0 0 40px #00d4ff, 
+                0 0 80px #0066ff,
+                inset 0 0 30px rgba(0, 212, 255, 0.6);
             position: relative;
         }
 
@@ -275,24 +263,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: radial-gradient(circle, #fff 0%, #00d4ff 100%);
-            box-shadow: 0 0 25px #fff, 0 0 50px #00d4ff;
-        }
-
-        .arc-reactor::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90px;
-            height: 90px;
-            border: 3px solid rgba(0, 212, 255, 0.4);
-            border-radius: 50%;
-            animation: reactorRing 3s ease-in-out infinite;
+            box-shadow: 0 0 20px #fff;
         }
 
         @keyframes reactorSpin {
@@ -301,56 +276,42 @@
         }
 
         @keyframes reactorPulse {
-            0%, 100% { 
-                box-shadow: 0 0 50px #00d4ff, 0 0 100px #0066ff; 
-            }
-            50% { 
-                box-shadow: 0 0 80px #00d4ff, 0 0 150px #0066ff; 
-            }
-        }
-
-        @keyframes reactorRing {
-            0%, 100% { 
-                transform: translate(-50%, -50%) scale(1); 
-                opacity: 0.6; 
-            }
-            50% { 
-                transform: translate(-50%, -50%) scale(1.3); 
-                opacity: 0.2; 
-            }
+            0%, 100% { box-shadow: 0 0 40px #00d4ff, 0 0 80px #0066ff; }
+            50% { box-shadow: 0 0 60px #00d4ff, 0 0 120px #0066ff; }
         }
 
         .system-status {
-            font-size: 14px;
+            font-size: 12px;
             color: #0f0;
-            text-shadow: 0 0 10px #0f0, 0 0 20px rgba(0, 255, 0, 0.5);
+            text-shadow: 0 0 10px #0f0;
             letter-spacing: 2px;
             font-weight: 700;
             font-family: 'Orbitron', monospace;
         }
 
-        /* Mission Log - 右边下方 */
+        /* Mission Log - 缩小避免重叠 */
         .mission-log {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(10, 10, 50, 0.9) 100%);
             border: 2px solid rgba(0, 212, 255, 0.5);
-            border-radius: 15px;
-            padding: 18px;
+            border-radius: 12px;
+            padding: 12px;
+            max-height: 450px;
             box-shadow: 
-                0 0 30px rgba(0, 212, 255, 0.4),
-                inset 0 0 20px rgba(0, 212, 255, 0.15);
+                0 0 25px rgba(0, 212, 255, 0.4),
+                inset 0 0 15px rgba(0, 212, 255, 0.15);
             backdrop-filter: blur(15px);
         }
 
         .log-title {
-            font-size: 18px;
+            font-size: 16px;
             color: #00d4ff;
             text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.5);
+            margin-bottom: 12px;
+            text-shadow: 0 0 15px #00d4ff;
             letter-spacing: 2px;
             font-weight: 700;
             border-bottom: 2px solid rgba(0, 212, 255, 0.4);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             font-family: 'Orbitron', monospace;
         }
 
@@ -362,16 +323,31 @@
         }
 
         .log-entry {
-            font-size: 11px;
+            font-size: 10px;
             color: #0f0;
-            margin: 6px 0;
-            padding: 6px 10px;
+            margin: 5px 0;
+            padding: 6px 8px;
             background: rgba(0, 255, 0, 0.08);
             border-left: 3px solid #0f0;
             text-shadow: 0 0 5px #0f0;
             animation: logFadeIn 0.5s ease-in;
             font-family: 'Exo 2', monospace;
             font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .log-entry.jarvis { border-left-color: #00d4ff; color: #00d4ff; background: rgba(0, 212, 255, 0.08); text-shadow: 0 0 5px #00d4ff; }
+        .log-entry.thor { border-left-color: #FFD700; color: #FFD700; background: rgba(255, 215, 0, 0.08); text-shadow: 0 0 5px #FFD700; }
+        .log-entry.hulk { border-left-color: #0f0; }
+        .log-entry.captain { border-left-color: #4169E1; color: #4169E1; background: rgba(65, 105, 225, 0.08); text-shadow: 0 0 5px #4169E1; }
+
+        .log-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            font-weight: 700;
         }
 
         @keyframes logFadeIn {
@@ -379,23 +355,50 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* 复仇者团队 - 底部 */
+        /* 复仇者团队 */
         .avengers-team {
             position: absolute;
-            bottom: 25px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 35px;
+            gap: 32px;
             z-index: 10;
         }
 
         .avenger-card {
-            width: 145px;
+            width: 140px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
+        }
+
+        /* 执行任务时的动画 */
+        .avenger-card.working {
+            animation: cardWorking 1.5s ease-in-out infinite;
+        }
+
+        @keyframes cardWorking {
+            0%, 100% { transform: translateY(-5px) scale(1.05); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        .avenger-card.working .avenger-img-container {
+            border-color: #00d4ff;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 1), 0 0 100px rgba(255, 215, 0, 0.5);
+            animation: workingGlow 1s ease-in-out infinite;
+        }
+
+        @keyframes workingGlow {
+            0%, 100% { 
+                box-shadow: 0 0 60px rgba(0, 212, 255, 1), 0 0 100px rgba(255, 215, 0, 0.5);
+                border-color: #00d4ff;
+            }
+            50% { 
+                box-shadow: 0 0 80px rgba(255, 215, 0, 1), 0 0 120px rgba(0, 212, 255, 0.8);
+                border-color: #FFD700;
+            }
         }
 
         .avenger-card::before {
@@ -412,7 +415,8 @@
             z-index: -1;
         }
 
-        .avenger-card:hover::before {
+        .avenger-card:hover::before,
+        .avenger-card.working::before {
             opacity: 1;
             animation: cardGlow 1.5s ease-in-out infinite;
         }
@@ -423,12 +427,12 @@
         }
 
         .avenger-card:hover {
-            transform: translateY(-20px) scale(1.08);
+            transform: translateY(-15px) scale(1.08);
         }
 
         .avenger-img-container {
-            width: 115px;
-            height: 150px;
+            width: 110px;
+            height: 145px;
             margin: 0 auto;
             position: relative;
             border-radius: 18px;
@@ -452,33 +456,34 @@
             transition: transform 0.4s ease;
         }
 
-        .avenger-card:hover .avenger-img {
+        .avenger-card:hover .avenger-img,
+        .avenger-card.working .avenger-img {
             transform: scale(1.15);
         }
 
         .avenger-name {
-            margin-top: 12px;
-            font-size: 15px;
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: 700;
             color: #fff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
             font-family: 'Orbitron', monospace;
             letter-spacing: 1px;
         }
 
         .avenger-model {
-            font-size: 11px;
+            font-size: 10px;
             color: #00d4ff;
-            margin-top: 5px;
+            margin-top: 4px;
             text-shadow: 0 0 8px #00d4ff;
             font-family: 'Exo 2', monospace;
             font-weight: 500;
         }
 
         .avenger-status {
-            font-size: 10px;
+            font-size: 9px;
             color: #0f0;
-            margin-top: 4px;
+            margin-top: 3px;
             text-shadow: 0 0 8px #0f0;
             font-family: 'Orbitron', monospace;
             font-weight: 700;
@@ -530,7 +535,7 @@
     <div class="thor-commander">
         <div class="thor-container">
             <div class="thor-glow"></div>
-            <img src="https://i.imgur.com/8yFjKpH.png" 
+            <img src="https://i.pinimg.com/originals/6b/9e/7e/6b9e7e7f5f0c0e5c5e5c5e5c5e5c5e5c.png" 
                  alt="Thor" 
                  class="thor-image"
                  onerror="this.src='https://wallpapers.com/images/hd/thor-endgame-avenger-3d-swbx5ek01gg60ln4.jpg'">
@@ -555,17 +560,17 @@
         <!-- Mission Log -->
         <div class="mission-log">
             <div class="log-title">MISSION LOG</div>
-            <div class="log-content">
-                <div class="log-entry">[15:20] Thor Command online</div>
-                <div class="log-entry">[15:12] Systems initialized</div>
-                <div class="log-entry">[15:06] X monitoring complete (5/5)</div>
-                <div class="log-entry">[14:28] API integration done (5/5)</div>
-                <div class="log-entry">[12:15] Exercise: HIIT completed</div>
-                <div class="log-entry">[11:30] Master List updated</div>
-                <div class="log-entry">[10:06] GGB data synced</div>
-                <div class="log-entry">[09:45] Email check completed</div>
-                <div class="log-entry">[09:00] GitHub monitoring active</div>
-                <div class="log-entry">[08:00] Calendar check executed</div>
+            <div class="log-content" id="logContent">
+                <div class="log-entry jarvis"><span class="log-icon">🤖</span>[15:25] JARVIS: Optimization reminder sent</div>
+                <div class="log-entry thor"><span class="log-icon">⚡</span>[15:20] THOR: Command center online</div>
+                <div class="log-entry jarvis"><span class="log-icon">🤖</span>[15:12] JARVIS: Interface redesign complete</div>
+                <div class="log-entry captain"><span class="log-icon">🛡️</span>[15:06] CAPTAIN: X monitoring complete (5/5)</div>
+                <div class="log-entry jarvis"><span class="log-icon">🤖</span>[14:28] JARVIS: API integration done (5/5)</div>
+                <div class="log-entry hulk"><span class="log-icon">💪</span>[12:15] HULK: Exercise HIIT completed</div>
+                <div class="log-entry jarvis"><span class="log-icon">🤖</span>[11:30] JARVIS: Master List updated</div>
+                <div class="log-entry captain"><span class="log-icon">🛡️</span>[10:06] CAPTAIN: GGB data synced</div>
+                <div class="log-entry jarvis"><span class="log-icon">🤖</span>[09:45] JARVIS: Email check completed</div>
+                <div class="log-entry captain"><span class="log-icon">🛡️</span>[09:00] CAPTAIN: GitHub monitoring active</div>
             </div>
         </div>
     </div>
@@ -573,12 +578,12 @@
     <!-- 复仇者团队 -->
     <div class="avengers-team">
         <!-- Iron Man / JARVIS -->
-        <div class="avenger-card">
+        <div class="avenger-card working" id="jarvis">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/9nKLOXZ.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/13/Iron-Man-PNG-HD-Quality.png" 
                      alt="Iron Man" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/13/Iron-Man-PNG-HD-Quality.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/iron_man/25081-2-iron-man-file.png'">
             </div>
             <div class="avenger-name">JARVIS</div>
             <div class="avenger-model">Sonnet-4.5</div>
@@ -586,12 +591,12 @@
         </div>
 
         <!-- Hulk -->
-        <div class="avenger-card">
+        <div class="avenger-card" id="hulk">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/3xQp5YZ.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/12/Hulk-No-Background.png" 
                      alt="Hulk" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/12/Hulk-No-Background.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/hulk/24-hulk-png-image.png'">
             </div>
             <div class="avenger-name">HULK</div>
             <div class="avenger-model">Grok-3</div>
@@ -599,12 +604,12 @@
         </div>
 
         <!-- Captain America -->
-        <div class="avenger-card">
+        <div class="avenger-card" id="captain">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/xyJKp2M.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/12/Captain-America-PNG-HD-Quality.png" 
                      alt="Captain America" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/12/Captain-America-PNG-HD-Quality.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/captain_america/24-captain-america-png-image.png'">
             </div>
             <div class="avenger-name">CAPTAIN</div>
             <div class="avenger-model">Gemini-3-Pro</div>
@@ -612,12 +617,12 @@
         </div>
 
         <!-- Hawkeye -->
-        <div class="avenger-card">
+        <div class="avenger-card" id="hawkeye">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/QJ5tKpN.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/12/Hawkeye-Background-PNG-Image.png" 
                      alt="Hawkeye" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/12/Hawkeye-Background-PNG-Image.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/avengers/24-hawkeye-png-image.png'">
             </div>
             <div class="avenger-name">HAWKEYE</div>
             <div class="avenger-model">GPT-4o</div>
@@ -625,12 +630,12 @@
         </div>
 
         <!-- Black Widow -->
-        <div class="avenger-card">
+        <div class="avenger-card" id="widow">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/7pLxM2K.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/12/Black-Widow-PNG-HD-Quality.png" 
                      alt="Black Widow" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/12/Black-Widow-PNG-HD-Quality.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/black_widow/24-black-widow-png-image.png'">
             </div>
             <div class="avenger-name">BLACK WIDOW</div>
             <div class="avenger-model">Opus-4</div>
@@ -638,12 +643,12 @@
         </div>
 
         <!-- Vision -->
-        <div class="avenger-card">
+        <div class="avenger-card" id="vision">
             <div class="avenger-img-container">
-                <img src="https://i.imgur.com/mKp8jR3.png" 
+                <img src="https://www.pngplay.com/wp-content/uploads/12/Vision-Transparent-PNG.png" 
                      alt="Vision" 
                      class="avenger-img"
-                     onerror="this.src='https://www.pngplay.com/wp-content/uploads/12/Vision-Transparent-PNG.png'">
+                     onerror="this.src='https://freepngimg.com/thumb/avengers/32281-8-vision-image.png'">
             </div>
             <div class="avenger-name">VISION</div>
             <div class="avenger-model">Image-AI</div>
@@ -652,35 +657,24 @@
     </div>
 
     <script>
-        // 动态星空（增强版）
+        // 动态星空
         function createStars() {
             const starField = document.getElementById('starField');
-            for (let i = 0; i < 250; i++) {
+            for (let i = 0; i < 200; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                
-                // 随机大小
                 const size = Math.random() * 3 + 1;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-                
-                // 随机位置
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
                 
-                // 添加闪烁类
                 if (Math.random() > 0.7) {
                     star.classList.add('twinkle');
                 }
                 
-                // 添加流星类
-                if (Math.random() > 0.95) {
-                    star.classList.add('shooting');
-                }
-                
                 star.style.animationDelay = Math.random() * 10 + 's';
                 star.style.animationDuration = (Math.random() * 5 + 3) + 's';
-                
                 starField.appendChild(star);
             }
         }
@@ -694,57 +688,78 @@
             document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
         }
 
+        // 角色 → 图标映射
+        const characterIcons = {
+            jarvis: '🤖',
+            thor: '⚡',
+            hulk: '💪',
+            captain: '🛡️',
+            hawkeye: '🏹',
+            widow: '🕷️',
+            vision: '💎'
+        };
+
+        // 模拟任务执行
+        const tasks = [
+            { char: 'jarvis', msg: 'Processing requests' },
+            { char: 'captain', msg: 'Data analysis complete' },
+            { char: 'hulk', msg: 'System check passed' },
+            { char: 'jarvis', msg: 'Monitoring active' },
+            { char: 'captain', msg: 'Report generated' }
+        ];
+
+        let taskIndex = 0;
+
+        function executeTask() {
+            const task = tasks[taskIndex % tasks.length];
+            const card = document.getElementById(task.char);
+            const logContent = document.getElementById('logContent');
+            
+            // 角色执行动画
+            card.classList.add('working');
+            
+            // 添加日志
+            const now = new Date();
+            const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${task.char}`;
+            entry.innerHTML = `<span class="log-icon">${characterIcons[task.char]}</span>[${time}] ${task.char.toUpperCase()}: ${task.msg}`;
+            logContent.insertBefore(entry, logContent.firstChild);
+            
+            // 限制日志数量
+            if (logContent.children.length > 12) {
+                logContent.removeChild(logContent.lastChild);
+            }
+            
+            // 2秒后停止动画
+            setTimeout(() => {
+                card.classList.remove('working');
+            }, 2000);
+            
+            taskIndex++;
+        }
+
         // 初始化
         createStars();
         updateClock();
         setInterval(updateClock, 1000);
+        
+        // 定期执行任务（每15秒）
+        setInterval(executeTask, 15000);
 
-        // 增强视差效果
+        // 视差效果
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 30;
             const y = (e.clientY / window.innerHeight - 0.5) * 30;
             
-            // Thor 跟随鼠标
             document.querySelector('.thor-commander').style.transform = 
                 `translate(calc(-50% + ${x * 0.3}px), ${y * 0.3}px)`;
             
-            // 星星视差
             document.querySelectorAll('.star').forEach((star, index) => {
                 const speed = (index % 5 + 1) * 0.3;
                 star.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
-            
-            // 能量波纹跟随
-            document.querySelectorAll('.energy-ring').forEach((ring, index) => {
-                ring.style.transform = `translate(calc(-50% + ${x * (0.1 + index * 0.05)}px), calc(-50% + ${y * (0.1 + index * 0.05)}px))`;
-            });
         });
-
-        // 定时添加新任务日志（模拟实时更新）
-        setInterval(() => {
-            const logContent = document.querySelector('.log-content');
-            const now = new Date();
-            const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-            
-            const messages = [
-                'System heartbeat',
-                'Monitoring active',
-                'All agents ready',
-                'Tasks synchronized'
-            ];
-            
-            if (Math.random() > 0.7 && logContent.children.length < 15) {
-                const entry = document.createElement('div');
-                entry.className = 'log-entry';
-                entry.textContent = `[${time}] ${messages[Math.floor(Math.random() * messages.length)]}`;
-                logContent.insertBefore(entry, logContent.firstChild);
-                
-                // 限制日志数量
-                if (logContent.children.length > 15) {
-                    logContent.removeChild(logContent.lastChild);
-                }
-            }
-        }, 30000); // 每30秒尝试添加新日志
     </script>
 </body>
 </html>
