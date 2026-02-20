@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>⚡ AVENGERS ASSEMBLE ⚡</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght:400;700;900&family=Rajdhani:wght@300;500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -223,7 +223,8 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .ironman-display {
+        /* Thor 中央展示区 */
+        .thor-display {
             position: relative;
             width: 300px;
             height: 400px;
@@ -231,48 +232,34 @@
             z-index: 15;
         }
 
-        .ironman-glow {
+        .thor-glow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 350px;
             height: 450px;
-            background: radial-gradient(ellipse, rgba(255, 51, 51, 0.3) 0%, rgba(255, 215, 0, 0.2) 40%, transparent 70%);
-            animation: ironmanPulse 3s ease-in-out infinite;
+            background: radial-gradient(ellipse, rgba(255, 215, 0, 0.3) 0%, rgba(0, 212, 255, 0.2) 40%, transparent 70%);
+            animation: thorPulse 3s ease-in-out infinite;
             filter: blur(30px);
         }
 
-        @keyframes ironmanPulse {
+        @keyframes thorPulse {
             0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
             50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
         }
 
-        .ironman-image {
+        .thor-image {
             position: relative;
-            width: 260px;
-            height: 360px;
-            object-fit: contain;
-            margin: 0 auto;
-            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
             filter: brightness(1.2) contrast(1.1);
-            box-shadow: 0 0 60px rgba(255, 51, 51, 0.6), 0 0 100px rgba(255, 215, 0, 0.4);
-            transition: opacity 0.3s ease;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), 0 0 100px rgba(0, 212, 255, 0.4);
         }
 
-        .ironman-image.gif {
-            display: none;
-        }
-
-        .ironman-display.active .ironman-image.png {
-            display: none;
-        }
-
-        .ironman-display.active .ironman-image.gif {
-            display: block;
-        }
-
-        .ironman-stats {
+        .thor-stats {
             position: absolute;
             bottom: -10px;
             left: 50%;
@@ -282,15 +269,15 @@
         }
 
         .stat-badge {
-            background: linear-gradient(135deg, rgba(255, 51, 51, 0.3) 0%, rgba(255, 215, 0, 0.2) 100%);
-            border: 2px solid rgba(255, 51, 51, 0.6);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 51, 51, 0.2) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.6);
             border-radius: 8px;
             padding: 5px 12px;
             font-size: 11px;
             font-weight: 700;
-            color: #ff3333;
-            text-shadow: 0 0 10px rgba(255, 51, 51, 0.8);
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
         .team-display {
@@ -352,12 +339,35 @@
             border: 2px solid rgba(255, 51, 51, 0.4);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .team-member:hover .member-avatar,
         .team-member.active .member-avatar {
             border-color: #FFD700;
             box-shadow: 0 8px 30px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Ironman avatar 特殊处理 */
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .member-avatar img,
+        .team-member.active .member-avatar img {
+            transform: scale(1.1);
+        }
+
+        .member-avatar .emoji-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
         }
 
         .member-name {
@@ -505,19 +515,14 @@
         <div class="center-display">
             <div class="holo-circle"></div>
             
-            <div class="ironman-display" id="ironmanDisplay">
-                <div class="ironman-glow"></div>
-                <!-- PNG 静态图片 - 用户上传后替换 -->
-                <img src="ironman.png" 
-                     alt="Ironman" 
-                     class="ironman-image png"
-                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22360%22%3E%3Crect fill=%22%23c41e3a%22 width=%22260%22 height=%22360%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2260%22 font-family=%22Arial%22%3E🤖%3C/text%3E%3Ctext x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2220%22%3EIRONMAN%3C/text%3E%3C/svg%3E';">
-                <!-- GIF 动画 - 运行时显示 -->
-                <img src="ironman.gif" 
-                     alt="Ironman Active" 
-                     class="ironman-image gif"
-                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22360%22%3E%3Crect fill=%22%23ff3333%22 width=%22260%22 height=%22360%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2260%22 font-family=%22Arial%22%3E⚡%3C/text%3E%3Ctext x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2220%22%3EACTIVE%3C/text%3E%3C/svg%3E';">
-                <div class="ironman-stats">
+            <!-- Thor 中央展示 -->
+            <div class="thor-display">
+                <div class="thor-glow"></div>
+                <img src="https://www.pngplay.com/wp-content/uploads/13/Thor-PNG-HD-Quality.png" 
+                     alt="Thor" 
+                     class="thor-image"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22400%22%3E%3Crect fill=%22%231a2332%22 width=%22300%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2280%22%3E⚡%3C/text%3E%3Ctext x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2230%22%3ETHOR%3C/text%3E%3C/svg%3E';">
+                <div class="thor-stats">
                     <div class="stat-badge">32 Tasks</div>
                     <div class="stat-badge">100% OK</div>
                     <div class="stat-badge">5 Agents</div>
@@ -552,10 +557,13 @@
         </div>
     </div>
 
+    <!-- 底部团队展示 - Ironman 在左下角 -->
     <div class="team-display">
         <div class="team-member active" data-agent="ironman">
             <div class="member-avatar">
-                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#c41e3a,#8b0000);'>🤖</div>
+                <img src="ironman.png" alt="Ironman" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="emoji-placeholder" style="display:none;background:linear-gradient(135deg,#c41e3a,#8b0000);">🤖</div>
             </div>
             <div class="member-name">IRONMAN</div>
             <div class="member-role">Main Agent</div>
@@ -564,7 +572,7 @@
 
         <div class="team-member" data-agent="fury">
             <div class="member-avatar">
-                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#2F4F4F,#000);'>🦅</div>
+                <div class="emoji-placeholder" style="background:linear-gradient(135deg,#2F4F4F,#000);">🦅</div>
             </div>
             <div class="member-name">NICK FURY</div>
             <div class="member-role">Supervisor</div>
@@ -573,7 +581,7 @@
 
         <div class="team-member" data-agent="hawkeye">
             <div class="member-avatar">
-                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#663399,#4B0082);'>🎯</div>
+                <div class="emoji-placeholder" style="background:linear-gradient(135deg,#663399,#4B0082);">🎯</div>
             </div>
             <div class="member-name">HAWKEYE</div>
             <div class="member-role">Monitor</div>
@@ -582,7 +590,7 @@
 
         <div class="team-member" data-agent="captain">
             <div class="member-avatar">
-                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#4169E1,#000080);'>🛡️</div>
+                <div class="emoji-placeholder" style="background:linear-gradient(135deg,#4169E1,#000080);">🛡️</div>
             </div>
             <div class="member-name">CAPTAIN</div>
             <div class="member-role">Executive</div>
@@ -591,7 +599,7 @@
 
         <div class="team-member" data-agent="hulk">
             <div class="member-avatar">
-                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#228B22,#006400);'>💥</div>
+                <div class="emoji-placeholder" style="background:linear-gradient(135deg,#228B22,#006400);">💥</div>
             </div>
             <div class="member-name">HULK</div>
             <div class="member-role">Research</div>
@@ -600,30 +608,13 @@
     </div>
 
     <script>
-        const ironmanDisplay = document.getElementById('ironmanDisplay');
-        let isActive = false;
-
         // 团队成员点击切换
         document.querySelectorAll('.team-member').forEach(member => {
             member.addEventListener('click', function() {
                 document.querySelectorAll('.team-member').forEach(m => m.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Ironman 激活时切换到 GIF
-                if (this.dataset.agent === 'ironman') {
-                    ironmanDisplay.classList.add('active');
-                    isActive = true;
-                } else {
-                    ironmanDisplay.classList.remove('active');
-                    isActive = false;
-                }
             });
         });
-
-        // 自动切换演示（可选）
-        setInterval(() => {
-            ironmanDisplay.classList.toggle('active');
-        }, 10000);
 
         // 日志更新
         const logContainer = document.getElementById('missionLog');
