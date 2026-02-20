@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>⚡ AVENGERS ASSEMBLE ⚡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght:400;700;900&family=Rajdhani:wght@300;500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Rajdhani', 'Orbitron', sans-serif;
+            background: #0a0e1a;
+            color: #00d4ff;
+            overflow: hidden;
+            width: 1024px;
+            height: 768px;
+            position: relative;
+        }
+
+        .holo-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+
+        .holo-background::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(200, 0, 0, 0.1) 0%, transparent 70%);
+        }
+
+        .top-bar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(139, 0, 0, 0.8) 0%, rgba(80, 0, 0, 0.6) 100%);
+            border-bottom: 2px solid rgba(255, 50, 50, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            box-shadow: 0 5px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 40px;
+            animation: logoGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px #ff3333); }
+            50% { filter: drop-shadow(0 0 30px #ff3333) drop-shadow(0 0 50px #FFD700); }
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff3333;
+            text-shadow: 0 0 15px rgba(255, 51, 51, 0.8), 0 0 30px rgba(255, 215, 0, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 51, 51, 0.5);
+            letter-spacing: 8px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .top-icons {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .top-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 51, 51, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(100, 0, 0, 0.4);
+        }
+
+        .top-icon:hover {
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .main-container {
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            height: calc(100% - 60px);
+            display: flex;
+            z-index: 10;
+        }
+
+        .left-panel {
+            width: 240px;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, rgba(40, 0, 0, 0.9) 0%, rgba(80, 0, 0, 0.8) 100%);
+            border-right: 2px solid rgba(255, 51, 51, 0.3);
+            overflow-y: auto;
+        }
+
+        .panel-section {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: rgba(100, 0, 0, 0.3);
+            border: 1px solid rgba(255, 51, 51, 0.4);
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ff3333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .info-line {
+            font-size: 11px;
+            color: rgba(255, 100, 100, 0.8);
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            color: rgba(255, 51, 51, 0.6);
+        }
+
+        .info-value {
+            color: #0f0;
+            font-weight: 700;
+        }
+
+        .center-display {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .holo-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 51, 51, 0.3);
+            animation: rotateCircle 20s linear infinite;
+        }
+
+        .holo-circle::before,
+        .holo-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 51, 51, 0.2);
+        }
+
+        .holo-circle::before {
+            width: 500px;
+            height: 500px;
+            animation: rotateCircle 15s linear infinite reverse;
+        }
+
+        .holo-circle::after {
+            width: 400px;
+            height: 400px;
+            animation: rotateCircle 25s linear infinite;
+        }
+
+        @keyframes rotateCircle {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .ironman-display {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin-top: -50px;
+            z-index: 15;
+        }
+
+        .ironman-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, rgba(255, 51, 51, 0.3) 0%, rgba(255, 215, 0, 0.2) 40%, transparent 70%);
+            animation: ironmanPulse 3s ease-in-out infinite;
+            filter: blur(30px);
+        }
+
+        @keyframes ironmanPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        }
+
+        .ironman-image {
+            position: relative;
+            width: 260px;
+            height: 360px;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+            filter: brightness(1.2) contrast(1.1);
+            box-shadow: 0 0 60px rgba(255, 51, 51, 0.6), 0 0 100px rgba(255, 215, 0, 0.4);
+            transition: opacity 0.3s ease;
+        }
+
+        .ironman-image.gif {
+            display: none;
+        }
+
+        .ironman-display.active .ironman-image.png {
+            display: none;
+        }
+
+        .ironman-display.active .ironman-image.gif {
+            display: block;
+        }
+
+        .ironman-stats {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .stat-badge {
+            background: linear-gradient(135deg, rgba(255, 51, 51, 0.3) 0%, rgba(255, 215, 0, 0.2) 100%);
+            border: 2px solid rgba(255, 51, 51, 0.6);
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.8);
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+        }
+
+        .team-display {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(180deg, transparent 0%, rgba(20, 0, 0, 0.95) 30%);
+            border-top: 2px solid rgba(255, 51, 51, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+            z-index: 20;
+        }
+
+        .team-member {
+            width: 120px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 51, 51, 0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-member:hover::before,
+        .team-member.active::before {
+            opacity: 1;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member.active {
+            transform: translateY(-15px) scale(1.05);
+        }
+
+        .member-avatar {
+            width: 90px;
+            height: 120px;
+            margin: 0 auto 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(100, 0, 0, 0.6), rgba(150, 0, 0, 0.4));
+            border: 2px solid rgba(255, 51, 51, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover .member-avatar,
+        .team-member.active .member-avatar {
+            border-color: #FFD700;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.8);
+        }
+
+        .member-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ff3333;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .member-role {
+            font-size: 9px;
+            color: rgba(255, 100, 100, 0.7);
+            margin-bottom: 2px;
+        }
+
+        .member-status {
+            font-size: 9px;
+            color: #0f0;
+            font-weight: 700;
+        }
+
+        .right-panel {
+            width: 240px;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, rgba(80, 0, 0, 0.8) 0%, rgba(40, 0, 0, 0.9) 100%);
+            border-left: 2px solid rgba(255, 51, 51, 0.3);
+            overflow-y: auto;
+        }
+
+        .mission-log {
+            max-height: 300px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 51, 51, 0.6) transparent;
+        }
+
+        .log-entry {
+            font-size: 10px;
+            color: #0f0;
+            margin: 5px 0;
+            padding: 5px 8px;
+            background: rgba(0, 255, 0, 0.05);
+            border-left: 2px solid #0f0;
+            border-radius: 3px;
+        }
+
+        .log-entry.warning { border-left-color: #FFD700; color: #FFD700; background: rgba(255, 215, 0, 0.05); }
+        .log-entry.error { border-left-color: #ff3333; color: #ff3333; background: rgba(255, 51, 51, 0.05); }
+        .log-entry.info { border-left-color: #00d4ff; color: #00d4ff; background: rgba(0, 212, 255, 0.05); }
+
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 51, 51, 0.5), transparent);
+            animation: scan 4s linear infinite;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="holo-background"></div>
+    <div class="scanline"></div>
+
+    <div class="top-bar">
+        <div class="logo-container">
+            <div class="logo-icon">🔴</div>
+            <div class="logo-text">AVENGERS</div>
+        </div>
+        <div class="title">ASSEMBLE</div>
+        <div class="top-icons">
+            <div class="top-icon">⚙️</div>
+            <div class="top-icon">📊</div>
+            <div class="top-icon">🛡️</div>
+            <div class="top-icon">⚡</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <div class="panel-section">
+                <div class="section-title">🔋 SYSTEM STATUS</div>
+                <div class="info-line">
+                    <span class="info-label">Arc Reactor:</span>
+                    <span class="info-value">98.4%</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Shield:</span>
+                    <span class="info-value">ONLINE</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Weapons:</span>
+                    <span class="info-value">READY</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Network:</span>
+                    <span class="info-value">SECURE</span>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title">📊 TEAM STATS</div>
+                <div class="info-line">
+                    <span class="info-label">Agents:</span>
+                    <span class="info-value">5 Active</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Tasks:</span>
+                    <span class="info-value">32 Running</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Success:</span>
+                    <span class="info-value">100%</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Uptime:</span>
+                    <span class="info-value">24/7</span>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title">⚡ IRONMAN DATA</div>
+                <div class="info-line">
+                    <span class="info-label">Model:</span>
+                    <span class="info-value">Sonnet-4.5</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Power:</span>
+                    <span class="info-value">MAX</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value">ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-display">
+            <div class="holo-circle"></div>
+            
+            <div class="ironman-display" id="ironmanDisplay">
+                <div class="ironman-glow"></div>
+                <!-- PNG 静态图片 - 用户上传后替换 -->
+                <img src="ironman.png" 
+                     alt="Ironman" 
+                     class="ironman-image png"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22360%22%3E%3Crect fill=%22%23c41e3a%22 width=%22260%22 height=%22360%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2260%22 font-family=%22Arial%22%3E🤖%3C/text%3E%3Ctext x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2220%22%3EIRONMAN%3C/text%3E%3C/svg%3E';">
+                <!-- GIF 动画 - 运行时显示 -->
+                <img src="ironman.gif" 
+                     alt="Ironman Active" 
+                     class="ironman-image gif"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22360%22%3E%3Crect fill=%22%23ff3333%22 width=%22260%22 height=%22360%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2260%22 font-family=%22Arial%22%3E⚡%3C/text%3E%3Ctext x=%2250%25%22 y=%2270%25%22 text-anchor=%22middle%22 fill=%22%23fff%22 font-size=%2220%22%3EACTIVE%3C/text%3E%3C/svg%3E';">
+                <div class="ironman-stats">
+                    <div class="stat-badge">32 Tasks</div>
+                    <div class="stat-badge">100% OK</div>
+                    <div class="stat-badge">5 Agents</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="panel-section">
+                <div class="section-title">📋 MISSION LOG</div>
+                <div class="mission-log" id="missionLog">
+                    <div class="log-entry info">[15:42] 🦅 Nick Fury: Supervision complete - A-</div>
+                    <div class="log-entry">[15:44] 🎯 Hawkeye: System check - All green</div>
+                    <div class="log-entry">[15:40] 🛡️ Captain: Migration complete</div>
+                    <div class="log-entry info">[15:35] 🤖 Ironman: AGENTS.md updated</div>
+                    <div class="log-entry">[15:30] 🤖 Ironman: Backup created</div>
+                    <div class="log-entry">[16:00] 💥 Hulk: Research scheduled</div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-title">🌐 CONNECTION</div>
+                <div class="info-line">
+                    <span class="info-label">Satellite:</span>
+                    <span class="info-value">LINKED</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Quantum:</span>
+                    <span class="info-value">STABLE</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-display">
+        <div class="team-member active" data-agent="ironman">
+            <div class="member-avatar">
+                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#c41e3a,#8b0000);'>🤖</div>
+            </div>
+            <div class="member-name">IRONMAN</div>
+            <div class="member-role">Main Agent</div>
+            <div class="member-status">● ACTIVE</div>
+        </div>
+
+        <div class="team-member" data-agent="fury">
+            <div class="member-avatar">
+                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#2F4F4F,#000);'>🦅</div>
+            </div>
+            <div class="member-name">NICK FURY</div>
+            <div class="member-role">Supervisor</div>
+            <div class="member-status">● STANDBY</div>
+        </div>
+
+        <div class="team-member" data-agent="hawkeye">
+            <div class="member-avatar">
+                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#663399,#4B0082);'>🎯</div>
+            </div>
+            <div class="member-name">HAWKEYE</div>
+            <div class="member-role">Monitor</div>
+            <div class="member-status">● ACTIVE</div>
+        </div>
+
+        <div class="team-member" data-agent="captain">
+            <div class="member-avatar">
+                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#4169E1,#000080);'>🛡️</div>
+            </div>
+            <div class="member-name">CAPTAIN</div>
+            <div class="member-role">Executive</div>
+            <div class="member-status">● ACTIVE</div>
+        </div>
+
+        <div class="team-member" data-agent="hulk">
+            <div class="member-avatar">
+                <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:50px;background:linear-gradient(135deg,#228B22,#006400);'>💥</div>
+            </div>
+            <div class="member-name">HULK</div>
+            <div class="member-role">Research</div>
+            <div class="member-status">● STANDBY</div>
+        </div>
+    </div>
+
+    <script>
+        const ironmanDisplay = document.getElementById('ironmanDisplay');
+        let isActive = false;
+
+        // 团队成员点击切换
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('click', function() {
+                document.querySelectorAll('.team-member').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Ironman 激活时切换到 GIF
+                if (this.dataset.agent === 'ironman') {
+                    ironmanDisplay.classList.add('active');
+                    isActive = true;
+                } else {
+                    ironmanDisplay.classList.remove('active');
+                    isActive = false;
+                }
+            });
+        });
+
+        // 自动切换演示（可选）
+        setInterval(() => {
+            ironmanDisplay.classList.toggle('active');
+        }, 10000);
+
+        // 日志更新
+        const logContainer = document.getElementById('missionLog');
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const now = new Date();
+                const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                const messages = [
+                    { text: '🤖 Ironman: System monitoring', type: 'info' },
+                    { text: '🦅 Fury: Quality check passed', type: '' },
+                    { text: '🎯 Hawkeye: All systems green', type: '' },
+                    { text: '🛡️ Captain: Tasks on schedule', type: '' },
+                    { text: '💥 Hulk: Research in progress', type: 'warning' }
+                ];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${msg.type}`;
+                entry.textContent = `[${time}] ${msg.text}`;
+                logContainer.insertBefore(entry, logContainer.firstChild);
+                
+                if (logContainer.children.length > 10) {
+                    logContainer.removeChild(logContainer.lastChild);
+                }
+            }
+        }, 15000);
+    </script>
+</body>
+</html>
