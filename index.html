@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>⚡ THOR COMMAND SYSTEM ⚡</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Noto+Sans+SC:wght@400;700;900&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+            font-family: 'Noto Sans SC', 'Rajdhani', 'Orbitron', sans-serif;
             background: #0a0e1a;
             color: #00d4ff;
             overflow: hidden;
@@ -57,13 +57,53 @@
             box-shadow: 0 5px 30px rgba(0, 212, 255, 0.3);
         }
 
+        .logo-container {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: logoGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700; }
+            50% { text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 60px #00d4ff; }
+        }
+
+        .logo-text {
+            font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(0, 212, 255, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .logo-subtitle {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 11px;
+            color: rgba(255, 215, 0, 0.7);
+            margin-top: -5px;
+            letter-spacing: 2px;
+        }
+
         .title {
             font-size: 32px;
             font-weight: 900;
             color: #FFD700;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(0, 212, 255, 0.5);
             letter-spacing: 8px;
-            font-family: 'Orbitron', monospace;
+            font-family: 'Orbitron', 'Noto Sans SC', monospace;
         }
 
         .top-icons {
@@ -448,12 +488,19 @@
 
     <!-- 顶部标题栏 -->
     <div class="top-bar">
-        <div class="title">⚡ THOR COMMAND ⚡</div>
+        <div class="logo-container">
+            <div class="logo-icon">⚡</div>
+            <div>
+                <div class="logo-text">雷神殿堂</div>
+                <div class="logo-subtitle">THOR PALACE</div>
+            </div>
+        </div>
+        <div class="title">指挥中心</div>
         <div class="top-icons">
-            <div class="top-icon" title="Settings">⚙️</div>
-            <div class="top-icon" title="Analytics">📊</div>
-            <div class="top-icon" title="Shield">🛡️</div>
-            <div class="top-icon" title="Power">⚡</div>
+            <div class="top-icon" title="设置">⚙️</div>
+            <div class="top-icon" title="数据">📊</div>
+            <div class="top-icon" title="防护">🛡️</div>
+            <div class="top-icon" title="能量">⚡</div>
         </div>
     </div>
 
@@ -462,58 +509,58 @@
         <!-- 左侧面板 -->
         <div class="left-panel">
             <div class="panel-section">
-                <div class="section-title">🔋 SYSTEM STATUS</div>
+                <div class="section-title">🔋 系统状态</div>
                 <div class="info-line">
-                    <span class="info-label">Power:</span>
+                    <span class="info-label">能量:</span>
                     <span class="info-value">98.4%</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Shield:</span>
-                    <span class="info-value">ONLINE</span>
+                    <span class="info-label">防护:</span>
+                    <span class="info-value">在线</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Weapons:</span>
-                    <span class="info-value">READY</span>
+                    <span class="info-label">武器:</span>
+                    <span class="info-value">就绪</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Network:</span>
-                    <span class="info-value">SECURED</span>
+                    <span class="info-label">网络:</span>
+                    <span class="info-value">安全</span>
                 </div>
             </div>
 
             <div class="panel-section">
-                <div class="section-title">📊 STATISTICS</div>
+                <div class="section-title">📊 统计数据</div>
                 <div class="info-line">
-                    <span class="info-label">Missions:</span>
+                    <span class="info-label">任务数:</span>
                     <span class="info-value">127</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Success Rate:</span>
+                    <span class="info-label">成功率:</span>
                     <span class="info-value">98.4%</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Team Size:</span>
-                    <span class="info-value">6 Agents</span>
+                    <span class="info-label">团队规模:</span>
+                    <span class="info-value">6 名特工</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Active:</span>
-                    <span class="info-value">2 Units</span>
+                    <span class="info-label">活跃:</span>
+                    <span class="info-value">2 名</span>
                 </div>
             </div>
 
             <div class="panel-section">
-                <div class="section-title">⚡ THOR STATS</div>
+                <div class="section-title">⚡ 雷神数据</div>
                 <div class="info-line">
-                    <span class="info-label">Strength:</span>
-                    <span class="info-value">MAX</span>
+                    <span class="info-label">力量:</span>
+                    <span class="info-value">最大</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Lightning:</span>
-                    <span class="info-value">CHARGED</span>
+                    <span class="info-label">闪电:</span>
+                    <span class="info-value">充能</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Mjolnir:</span>
-                    <span class="info-value">READY</span>
+                    <span class="info-label">雷神之锤:</span>
+                    <span class="info-value">就绪</span>
                 </div>
             </div>
         </div>
@@ -531,9 +578,9 @@
                      class="thor-image"
                      onerror="this.onerror=null; this.src='https://freepngimg.com/thumb/avengers/24-thor-png-image.png'; if(this.complete && this.naturalHeight === 0) setTimeout(() => this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22360%22%3E%3Crect fill=%22%231a2332%22 width=%22260%22 height=%22360%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23FFD700%22 font-size=%2280%22%3E⚡ THOR%3C/text%3E%3C/svg%3E', 1000);">
                 <div class="thor-stats">
-                    <div class="stat-badge">127 MISSIONS</div>
-                    <div class="stat-badge">98.4% SUCCESS</div>
-                    <div class="stat-badge">6 AGENTS</div>
+                    <div class="stat-badge">127 任务</div>
+                    <div class="stat-badge">98.4% 成功</div>
+                    <div class="stat-badge">6 特工</div>
                 </div>
             </div>
         </div>
@@ -541,30 +588,30 @@
         <!-- 右侧面板 -->
         <div class="right-panel">
             <div class="panel-section">
-                <div class="section-title">📋 MISSION LOG</div>
+                <div class="section-title">📋 任务日志</div>
                 <div class="mission-log" id="missionLog">
-                    <div class="log-entry info"><span class="log-icon">🤖</span>[16:05] JARVIS: Interface updated</div>
-                    <div class="log-entry"><span class="log-icon">⚡</span>[16:00] THOR: Study completed</div>
-                    <div class="log-entry warning"><span class="log-icon">⚠️</span>[15:25] System: Optimization reminder</div>
-                    <div class="log-entry info"><span class="log-icon">🛡️</span>[15:06] CAPTAIN: X monitoring done</div>
-                    <div class="log-entry"><span class="log-icon">🤖</span>[14:28] JARVIS: API integration (5/5)</div>
-                    <div class="log-entry"><span class="log-icon">💪</span>[12:15] HULK: HIIT training done</div>
-                    <div class="log-entry info"><span class="log-icon">🛡️</span>[11:30] CAPTAIN: Master List updated</div>
-                    <div class="log-entry"><span class="log-icon">🤖</span>[10:06] JARVIS: GGB data synced</div>
-                    <div class="log-entry"><span class="log-icon">🤖</span>[09:45] JARVIS: Email check complete</div>
-                    <div class="log-entry info"><span class="log-icon">🛡️</span>[09:00] CAPTAIN: GitHub active</div>
+                    <div class="log-entry info"><span class="log-icon">🤖</span>[16:05] JARVIS: 界面已更新</div>
+                    <div class="log-entry"><span class="log-icon">⚡</span>[16:00] THOR: 学习完成</div>
+                    <div class="log-entry warning"><span class="log-icon">⚠️</span>[15:25] 系统: 优化时间提醒</div>
+                    <div class="log-entry info"><span class="log-icon">🛡️</span>[15:06] CAPTAIN: X平台监控完成</div>
+                    <div class="log-entry"><span class="log-icon">🤖</span>[14:28] JARVIS: API集成完成 (5/5)</div>
+                    <div class="log-entry"><span class="log-icon">💪</span>[12:15] HULK: HIIT训练完成</div>
+                    <div class="log-entry info"><span class="log-icon">🛡️</span>[11:30] CAPTAIN: 任务清单已更新</div>
+                    <div class="log-entry"><span class="log-icon">🤖</span>[10:06] JARVIS: GGB数据已同步</div>
+                    <div class="log-entry"><span class="log-icon">🤖</span>[09:45] JARVIS: 邮件检查完成</div>
+                    <div class="log-entry info"><span class="log-icon">🛡️</span>[09:00] CAPTAIN: GitHub活跃</div>
                 </div>
             </div>
 
             <div class="panel-section">
-                <div class="section-title">🌐 CONNECTION</div>
+                <div class="section-title">🌐 连接状态</div>
                 <div class="info-line">
-                    <span class="info-label">Satellite:</span>
-                    <span class="info-value">LINKED</span>
+                    <span class="info-label">卫星:</span>
+                    <span class="info-value">已连接</span>
                 </div>
                 <div class="info-line">
-                    <span class="info-label">Quantum:</span>
-                    <span class="info-value">STABLE</span>
+                    <span class="info-label">量子通讯:</span>
+                    <span class="info-value">稳定</span>
                 </div>
             </div>
         </div>
@@ -578,52 +625,52 @@
             </div>
             <div class="member-name">JARVIS</div>
             <div class="member-model">Sonnet-4.5</div>
-            <div class="member-status">● ACTIVE</div>
+            <div class="member-status">● 活跃</div>
         </div>
 
         <div class="team-member" id="hulk">
             <div class="member-avatar">
                 <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#228B22,#006400);'>💪</div>
             </div>
-            <div class="member-name">HULK</div>
+            <div class="member-name">浩克</div>
             <div class="member-model">Grok-3</div>
-            <div class="member-status">● STANDBY</div>
+            <div class="member-status">● 待命</div>
         </div>
 
         <div class="team-member" id="captain">
             <div class="member-avatar">
                 <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#4169E1,#000080);'>🛡️</div>
             </div>
-            <div class="member-name">CAPTAIN</div>
+            <div class="member-name">队长</div>
             <div class="member-model">Gemini-3-Pro</div>
-            <div class="member-status">● ACTIVE</div>
+            <div class="member-status">● 活跃</div>
         </div>
 
         <div class="team-member" id="hawkeye">
             <div class="member-avatar">
                 <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#663399,#4B0082);'>🏹</div>
             </div>
-            <div class="member-name">HAWKEYE</div>
+            <div class="member-name">鹰眼</div>
             <div class="member-model">GPT-4o</div>
-            <div class="member-status">● STANDBY</div>
+            <div class="member-status">● 待命</div>
         </div>
 
         <div class="team-member" id="widow">
             <div class="member-avatar">
                 <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#DC143C,#8B0000);'>🕷️</div>
             </div>
-            <div class="member-name">BLACK WIDOW</div>
+            <div class="member-name">黑寡妇</div>
             <div class="member-model">Opus-4</div>
-            <div class="member-status">● STANDBY</div>
+            <div class="member-status">● 待命</div>
         </div>
 
         <div class="team-member" id="vision">
             <div class="member-avatar">
                 <div style='width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#FFD700,#FFA500);'>💎</div>
             </div>
-            <div class="member-name">VISION</div>
+            <div class="member-name">幻视</div>
             <div class="member-model">Image-AI</div>
-            <div class="member-status">● STANDBY</div>
+            <div class="member-status">● 待命</div>
         </div>
     </div>
 
@@ -643,10 +690,10 @@
                 const now = new Date();
                 const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
                 const messages = [
-                    { icon: '🤖', text: 'JARVIS: System monitoring', type: 'info' },
-                    { icon: '⚡', text: 'THOR: Power surge detected', type: 'warning' },
-                    { icon: '🛡️', text: 'CAPTAIN: Shield status OK', type: '' },
-                    { icon: '💪', text: 'HULK: Energy levels stable', type: '' }
+                    { icon: '🤖', text: 'JARVIS: 系统监控中', type: 'info' },
+                    { icon: '⚡', text: 'THOR: 能量波动检测', type: 'warning' },
+                    { icon: '🛡️', text: 'CAPTAIN: 防护状态正常', type: '' },
+                    { icon: '💪', text: 'HULK: 能量水平稳定', type: '' }
                 ];
                 const msg = messages[Math.floor(Math.random() * messages.length)];
                 const entry = document.createElement('div');
